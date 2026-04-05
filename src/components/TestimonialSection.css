@@ -1,0 +1,97 @@
+.testimonial-section {
+  padding: 8rem 2rem;
+  position: relative;
+  background: radial-gradient(circle at top left, rgba(157, 78, 221, 0.05), transparent 50%),
+              radial-gradient(circle at bottom right, rgba(255, 190, 61, 0.05), transparent 50%);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.testimonial-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mentor-quote {
+  position: relative;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-style: italic;
+  padding: 2rem 0 2rem 2.5rem;
+  border-left: 4px solid var(--accent-gold);
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, rgba(255,190,61,0.05), transparent);
+  border-radius: 0 12px 12px 0;
+}
+
+.mentor-quote p {
+  position: relative;
+  z-index: 2;
+}
+
+.mentor-quote .highlight {
+  color: var(--accent-purple);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(157, 78, 221, 0.4);
+}
+
+.mentor-credit {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mentor-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.testimonial-image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-image {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  transition: transform 0.4s ease;
+}
+
+.float-slow {
+  animation: float 8s ease-in-out infinite;
+  padding: 1rem;
+}
+
+.float-slow:hover .testimonial-image {
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .mentor-quote {
+    padding: 2rem;
+    border-left: none;
+    border-top: 4px solid var(--accent-gold);
+    border-radius: 0 0 12px 12px;
+    background: linear-gradient(180deg, rgba(255,190,61,0.05), transparent);
+  }
+}
