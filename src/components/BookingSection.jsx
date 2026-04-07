@@ -15,11 +15,36 @@ const BookingSection = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate booking
-    alert(`Thank you ${formData.name}! Your magical booking request has been sent.`);
-    setFormData({ name: '', email: '', eventType: 'birthday', date: '', message: '' });
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/yairsirton8@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New Booking Request from ${formData.name}`,
+        })
+      });
+      
+      if (response.ok) {
+        alert(`Thank you ${formData.name}! Your magical booking request has been sent to Yair.`);
+        setFormData({ name: '', email: '', eventType: 'birthday', date: '', message: '' });
+      } else {
+        alert("Oops! Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      alert("Oops! There was a network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -78,8 +103,8 @@ const BookingSection = () => {
               <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows="4" placeholder="Tell me more about your magical event..." required></textarea>
             </div>
 
-            <button type="submit" className="btn-primary submit-btn">
-              <span>Send Request</span>
+            <button type="submit" className="btn-primary submit-btn" disabled={isSubmitting}>
+              <span>{isSubmitting ? 'Sending...' : 'Send Request'}</span>
               <Send size={18} />
             </button>
           </form>
